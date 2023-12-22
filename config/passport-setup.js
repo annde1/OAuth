@@ -1,8 +1,8 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const keys = require("./keys");
-const createUser = require("../service/user-service");
-const checkUser = require("../service/user-service");
+const { createUser } = require("../service/user-service");
+const { checkUser } = require("../service/user-service");
 
 //Serialize user information into a cookie
 passport.serializeUser((user, done) => {
@@ -13,7 +13,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   //When the cookie comes back take the id and check if the user exists in the database
   checkUser(id)
-    .then(() => {
+    .then((user) => {
       done(null, user);
     })
     .catch((err) => console.error(err));
