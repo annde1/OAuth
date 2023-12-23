@@ -1,6 +1,8 @@
 const router = require("express").Router();
+const authCheck = require("../middleware/auth-check");
 
-router.get("/", (req, res) => {
-  res.send("You are logged in, this is your profile: " + req.user);
+//Profile page route, check if user is logged in and redirect:
+router.get("/", authCheck, (req, res) => {
+  res.render("profile", { user: req.user }); //show user data
 });
 module.exports = router;

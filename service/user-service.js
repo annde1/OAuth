@@ -12,6 +12,7 @@ const checkUserExists = async (id) => {
 const checkUser = async (id) => {
   try {
     const user = await User.findOne({ _id: id });
+
     return user;
   } catch (err) {
     console.log(err);

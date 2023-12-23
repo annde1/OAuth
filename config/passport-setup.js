@@ -27,6 +27,7 @@ passport.use(
       callbackURL: "/auth/google/redirect",
     },
     (accessToken, refreshToken, profileInfo, done) => {
+      // console.log(profileInfo);
       createUser(profileInfo, done); //passing done to createUser to serialize user
       // .then((user) => console.log("New user created:", user))
       // .catch((err) => console.log(err));

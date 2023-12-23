@@ -23,6 +23,7 @@ app.use(
 
 // Initialize passport
 app.use(passport.initialize());
+
 // Use session cookies to control logging in
 app.use(passport.session());
 
@@ -35,7 +36,7 @@ app.use("/profile", profileRoutes);
 
 // Create home route
 app.get("/", (req, res) => {
-  res.render("home"); // render home template
+  res.render("home", { user: req.user }); // render home template, send along user data
 });
 
 app.listen(5000, () => {
